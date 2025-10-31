@@ -1,0 +1,11 @@
+# Core dependencies for AI-Powered Snake Game Workshop
+pygame>=2.5.0
+numpy>=1.24.0
+
+# Optional for later enhancements
+gradio>=4.0.0  # For web interface (advanced version)
+Pillow>=10.0.0  # For image processing
+
+# Development and debugging tools (optional)
+ipython>=8.0.0
+requests>=2.28.0   # For API interactions (if needed)

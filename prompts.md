@@ -73,3 +73,7 @@ This demo highlights:
 
 > 💡 *Future of coding: Talk to your IDE, not just type into it.*
 ```
+
+---
+
+it seems that you are trying to make this demo with full-code. but all I need is that you prepare the prompts_details.md for me so that I can enter these promtps step-by-step in my copilot cli or any other ai command-line tools so that it will discuss the game design with me and generate the code step-by-step, even including debuging. and then it will show me the final code and run the game in gradio localhost.
