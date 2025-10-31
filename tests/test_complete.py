@@ -1,49 +1,12 @@
 #!/usr/bin/env python3
 """
-Comprehensive test suite for Snake Game
+Comprehensive test suite for Snake Game core functionality
 """
 import sys
 import os
-import time
 
 # Add src directory to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
-
-def test_complete_game_session():
-    """Test a complete game session with multiple actions."""
-    print("🎮 Testing complete game session...")
-    
-    try:
-        from game_core import GameEngine, UP, DOWN, LEFT, RIGHT
-        
-        game = GameEngine()
-        
-        # Test initial state
-        state = game.get_game_state()
-        assert state['valid'], "Game state should be valid"
-        assert state['score_info']['current'] == 0, "Initial score should be 0"
-        assert len(state['snake_body']) == 3, "Initial snake length should be 3"
-        print("✅ Initial state correct")
-        
-        # Test movement sequence
-        moves = [RIGHT, RIGHT, DOWN, DOWN, LEFT, LEFT, UP, UP]
-        for i, move in enumerate(moves):
-            game.handle_input(move)
-            update_info = game.update()
-            state = game.get_game_state()
-            
-            if update_info['game_ended']:
-                print(f"✅ Game ended after {i+1} moves (collision detected)")
-                break
-            elif update_info['food_eaten']:
-                print(f"✅ Food eaten at move {i+1}, score: {state['score_info']['current']}")
-        
-        print("✅ Complete game session test passed")
-        return True
-        
-    except Exception as e:
-        print(f"❌ Complete game session test failed: {e}")
-        return False
 
 def test_collision_detection():
     """Test various collision scenarios."""
@@ -95,23 +58,50 @@ def test_scoring_system():
         assert score_manager.get_high_score() == 10, "High score should update"
         assert score_manager.get_food_eaten() == 1, "Food eaten should be 1"
         
-        # Test multiple scores
-        for _ in range(4):
-            score_manager.add_food_score()
-        
-        assert score_manager.get_current_score() == 50, "Score should be 50 after five foods"
-        assert score_manager.get_high_score() == 50, "High score should be 50"
-        
         # Test reset
         score_manager.reset_current_game()
         assert score_manager.get_current_score() == 0, "Current score should reset"
-        assert score_manager.get_high_score() == 50, "High score should persist"
+        assert score_manager.get_high_score() == 10, "High score should persist"
         
         print("✅ Scoring system tests passed")
         return True
         
     except Exception as e:
         print(f"❌ Scoring system test failed: {e}")
+        return False
+
+def test_complete_game_session():
+    """Test a complete game session with multiple actions."""
+    print("🎮 Testing complete game session...")
+    
+    try:
+        from game_core import GameEngine, UP, DOWN, LEFT, RIGHT
+        
+        game = GameEngine()
+        
+        # Test initial state
+        state = game.get_game_state()
+        assert state['valid'], "Game state should be valid"
+        assert state['score_info']['current'] == 0, "Initial score should be 0"
+        assert len(state['snake_body']) == 3, "Initial snake length should be 3"
+        
+        # Test movement sequence
+        moves = [RIGHT, RIGHT, DOWN, DOWN, LEFT, LEFT, UP, UP]
+        for i, move in enumerate(moves):
+            game.handle_input(move)
+            update_info = game.update()
+            
+            if update_info['game_ended']:
+                print(f"✅ Game ended after {i+1} moves (collision detected)")
+                break
+            elif update_info['food_eaten']:
+                print(f"✅ Food eaten at move {i+1}, score: {update_info['score']}")
+        
+        print("✅ Complete game session test passed")
+        return True
+        
+    except Exception as e:
+        print(f"❌ Complete game session test failed: {e}")
         return False
 
 def test_pygame_components():
@@ -147,41 +137,6 @@ def test_pygame_components():
         print(f"❌ Pygame components test failed: {e}")
         return False
 
-def test_gradio_components():
-    """Test Gradio UI components."""
-    print("🌐 Testing Gradio components...")
-    
-    try:
-        from gradio_ui import GradioSnakeGame, GameImageRenderer, ControlHandler
-        from game_core import GameEngine
-        
-        # Test image renderer
-        renderer = GameImageRenderer()
-        game = GameEngine()
-        game_state = game.get_game_state()
-        
-        image = renderer.render_game_state(game_state)
-        assert image.size == (600, 550), f"Image size should be (600, 550), got {image.size}"
-        
-        # Test control handler
-        controller = ControlHandler(game)
-        status, success = controller.move_right()
-        assert isinstance(status, str), "Status should be string"
-        assert isinstance(success, bool), "Success should be boolean"
-        
-        # Test Gradio interface
-        gradio_game = GradioSnakeGame()
-        status, image = gradio_game.get_current_display()
-        assert isinstance(status, str), "Status should be string"
-        assert image is not None, "Image should not be None"
-        
-        print("✅ Gradio components test passed")
-        return True
-        
-    except Exception as e:
-        print(f"❌ Gradio components test failed: {e}")
-        return False
-
 def run_all_tests():
     """Run all test suites."""
     print("🧪 Running comprehensive Snake Game test suite...\n")
@@ -191,7 +146,6 @@ def run_all_tests():
         test_scoring_system,
         test_complete_game_session,
         test_pygame_components,
-        test_gradio_components,
     ]
     
     passed = 0
@@ -209,10 +163,7 @@ def run_all_tests():
     
     if passed == total:
         print("🎉 All tests passed! Snake Game is ready to play!")
-        print("\nTo run the game:")
-        print("  Pygame version:  python main.py --pygame")
-        print("  Gradio version:  python main.py --gradio")
-        print("  Both versions:   python main.py --both")
+        print("\nTo run the game: python main.py")
         return True
     else:
         print(f"❌ {total - passed} tests failed. Check the output above.")

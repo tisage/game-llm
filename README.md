@@ -1,31 +1,16 @@
-# 🐍 Snake Game - Complete Implementation
+# 🐍 Snake Game - Pygame Implementation
 
-A fully functional Snake game implementation with both desktop (Pygame) and web (Gradio) interfaces, built using AI-assisted development techniques.
+A classic Snake game built with Python and Pygame, featuring smooth WASD controls and real-time gameplay.
 
-## 🎯 Project Overview
+## 🎮 Features
 
-This project implements the classic Snake game with modern Python technologies, demonstrating AI-powered development workflows:
-
-### Backend (`src/game_core/`)
-- **Pure Python game logic** - No UI dependencies
-- **Modular architecture** - Separate components for different game aspects
-- **Comprehensive state management** - Complete game state tracking
-- **Collision detection** - Wall and self-collision algorithms
-- **Scoring system** - Score tracking with high score persistence
-
-### Frontend Options
-
-#### 1. Pygame Desktop Interface (`src/pygame_ui/`)
-- **Real-time gameplay** - Smooth WASD/Arrow key controls
-- **60 FPS rendering** - Fluid visual experience
-- **Rich graphics** - Enhanced snake and food visuals
-- **Immediate feedback** - Instant response to input
-
-#### 2. Gradio Web Interface (`src/gradio_ui/`)
-- **Web-based interface** - Accessible from any browser
-- **Turn-based gameplay** - Click buttons to move
-- **Modern UI** - Clean, responsive design
-- **Easy sharing** - Public links available
+- **20×15 grid** - Perfect game board size
+- **WASD/Arrow key controls** - Responsive keyboard input
+- **Real-time movement** - Smooth 60 FPS gameplay
+- **Collision detection** - Wall and self-collision
+- **Food consumption** - Grow and score points
+- **High score tracking** - Track your best games
+- **Pause/Resume** - Take breaks during gameplay
 
 ## 🚀 Quick Start
 
@@ -37,142 +22,71 @@ pip install -r requirements.txt
 ```
 
 ### Running the Game
-
-#### Pygame Version (Recommended for gameplay)
 ```bash
-python main.py --pygame
-```
-**Controls:**
-- W/A/S/D or Arrow Keys - Move snake
-- R - Restart game
-- P/Space - Pause/Resume
-- ESC - Quit
-
-#### Gradio Web Version (Great for sharing)
-```bash
-python main.py --gradio
-```
-Opens web interface at http://localhost:7860
-
-#### Both Versions Simultaneously
-```bash
-python main.py --both
+python main.py
 ```
 
-### Advanced Options
-```bash
-# Custom port for web interface
-python main.py --gradio --port 8080
+## 🎯 Controls
 
-# Public sharing link
-python main.py --gradio --share
+- **W/A/S/D** or **Arrow Keys** - Move snake
+- **R** - Restart game
+- **P/Space** - Pause/Resume
+- **ESC** - Quit game
 
-# Help and options
-python main.py --help
+## 🏗️ Project Structure
+
 ```
-
-## 🎮 Game Features
-
-### Core Gameplay
-- **Grid-based movement** - 20×15 game grid
-- **Food consumption** - Eat red food to grow and score
-- **Collision detection** - Avoid walls and yourself
-- **Score system** - 10 points per food item
-- **High score tracking** - Persistent across sessions
-
-### Visual Features
-- **Enhanced graphics** - Snake with eyes, highlighted food
-- **Real-time UI** - Score, length, and status display
-- **Game overlays** - Game over and pause screens
-- **Visual feedback** - Status messages and animations
-
-### Technical Features
-- **Multiple interfaces** - Desktop and web versions
-- **Modular design** - Easy to extend and modify
-- **Comprehensive testing** - Full test suite included
-- **Error handling** - Graceful failure recovery
-
-## 🏗️ Architecture
-
-### Backend Structure
-```
-src/game_core/
-├── constants.py      # Game configuration
-├── snake.py          # Snake entity logic
-├── food.py           # Food generation and management
-├── collision.py      # Collision detection algorithms
-├── scoring.py        # Score calculation and tracking
-└── game_state.py     # Main game engine
-```
-
-### Frontend Structure
-```
-src/pygame_ui/
-├── game_loop.py      # Main Pygame game loop
-├── renderer.py       # Graphics rendering
-└── input_handler.py  # Keyboard input processing
-
-src/gradio_ui/
-├── web_interface.py  # Main Gradio interface
-├── image_renderer.py # Game state to image conversion
-└── control_handler.py # Button action processing
+snake-game/
+├── main.py              # Game entry point
+├── requirements.txt     # Dependencies
+├── src/                 # Source code
+│   ├── game_core/       # Core game logic
+│   │   ├── snake.py     # Snake entity
+│   │   ├── food.py      # Food management
+│   │   ├── collision.py # Collision detection
+│   │   ├── scoring.py   # Score tracking
+│   │   └── game_state.py # Game engine
+│   └── pygame_ui/       # Pygame interface
+│       ├── game_loop.py # Main game loop
+│       ├── renderer.py  # Graphics rendering
+│       └── input_handler.py # Input processing
+└── tests/               # Test suite
+    ├── test_core.py     # Core functionality tests
+    └── test_complete.py # Comprehensive tests
 ```
 
 ## 🧪 Testing
 
-Run the comprehensive test suite:
+Run the test suite to verify everything works:
+
 ```bash
-# Test core functionality
+# Basic tests
 python tests/test_core.py
 
-# Test Gradio components
-python tests/test_gradio.py
-
-# Full test suite
+# Comprehensive tests
 python tests/test_complete.py
 ```
 
-## 🎯 Design Principles
+## 🎯 Game Rules
 
-### 1. Separation of Concerns
-- **Game logic** is independent of UI
-- **Rendering** is separated from game state
-- **Input handling** is modular and swappable
+1. **Objective**: Eat red food to grow and score points
+2. **Movement**: Snake moves continuously in the chosen direction
+3. **Growth**: Snake grows by one segment for each food eaten
+4. **Scoring**: 10 points per food item
+5. **Game Over**: Hitting walls or yourself ends the game
 
-### 2. Modular Architecture
-- Each component has a single responsibility
-- Components communicate through well-defined interfaces
-- Easy to add new features or UI methods
+## 🔧 Technical Details
 
-### 3. Multi-Interface Support
-- Same game logic powers both interfaces
-- Consistent gameplay across platforms
-- Easy to add new interface types
+- **Language**: Python 3.8+
+- **Framework**: Pygame 2.5+
+- **Architecture**: Modular design with separated game logic and UI
+- **Performance**: 60 FPS rendering with configurable game speed
 
----
+## 🎉 Enjoy Playing!
 
-## 📚 AI-Powered Development Workshop
+This Snake game demonstrates clean Python architecture with responsive controls and smooth gameplay. Perfect for learning game development concepts or just having fun!
 
-This Snake game was built as part of the **AI-Powered Game Development Workshop**, demonstrating:
-
-### 🤖 AI-Assisted Development
-- **GitHub Copilot CLI** for rapid code generation
-- **Prompt engineering** for specific game features
-- **AI-guided architecture** decisions
-- **Automated testing** suggestions
-
-### 🎓 Learning Outcomes
-- Modern Python development patterns
-- Multi-interface application design
-- Testing and quality assurance
-- AI collaboration workflows
-
-### 🔧 Development Process
-1. **AI-Assisted Planning** - Architecture design with AI input
-2. **Rapid Prototyping** - Core logic development
-3. **Interface Implementation** - Multiple UI approaches
-4. **Testing & Validation** - Comprehensive test coverage
-5. **Documentation** - AI-assisted documentation generation
+**Happy Snake Gaming! 🐍🎮**
 
 ---
 

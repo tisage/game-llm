@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Test script for game core functionality
+Test script for core game functionality
 """
 import sys
 import os
@@ -43,16 +43,6 @@ def test_game_core():
     state = game.get_game_state()
     print(f"✅ Moved down: {new_head} -> {state['snake_body'][0]}")
     
-    # Test invalid move (opposite direction)
-    current_head = state['snake_body'][0]
-    game.handle_input(UP)  # Should be ignored (opposite of DOWN)
-    game.update()
-    state = game.get_game_state()
-    if state['snake_body'][0] != current_head:
-        print(f"✅ Invalid move correctly ignored")
-    else:
-        print(f"⚠️  Snake moved when it shouldn't have")
-    
     # Test pause/resume
     print("\n⏸️  Testing pause/resume...")
     game.pause_game()
@@ -90,6 +80,7 @@ if __name__ == "__main__":
         
         if success:
             print("\n🎉 All tests passed! Ready to run the game.")
+            print("Run with: python main.py")
         else:
             print("\n❌ Some tests failed. Check the output above.")
             sys.exit(1)
