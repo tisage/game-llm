@@ -40,3 +40,16 @@ class GameState:
 
 # Score settings
 FOOD_SCORE = 10
+
+# Food settings
+MAX_FOOD_COUNT = 3  # Maximum number of food items on board
+MIN_FOOD_COUNT = 2  # Minimum number of food items on board
+
+# Food colors for variety
+FOOD_COLORS = [
+    (255, 0, 0),    # Red
+    (255, 165, 0),  # Orange  
+    (255, 255, 0),  # Yellow
+    (255, 20, 147), # Deep Pink
+    (138, 43, 226), # Blue Violet
+]

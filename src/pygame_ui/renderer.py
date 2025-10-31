@@ -38,7 +38,7 @@ class PygameRenderer:
         
         # Draw game components
         self._draw_grid()
-        self._draw_food(game_state['food_position'])
+        self._draw_multiple_food(game_state)
         self._draw_snake(game_state['snake_body'])
         
         # Draw UI
@@ -82,15 +82,48 @@ class PygameRenderer:
                 pygame.draw.rect(self.screen, DARK_GREEN, rect)
                 pygame.draw.rect(self.screen, WHITE, rect, 1)
     
-    def _draw_food(self, food_position: Tuple[int, int]) -> None:
-        """Draw food on the screen."""
+    def _draw_food(self, food_position: Tuple[int, int], color: Tuple[int, int, int] = RED) -> None:
+        """Draw a single food item with enhanced visual effects."""
         x, y = food_position
-        rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
-        
-        # Draw food as a red circle
         center = (x * CELL_SIZE + CELL_SIZE // 2, y * CELL_SIZE + CELL_SIZE // 2)
-        pygame.draw.circle(self.screen, RED, center, CELL_SIZE // 2 - 2)
-        pygame.draw.circle(self.screen, WHITE, center, CELL_SIZE // 2 - 2, 2)
+        radius = CELL_SIZE // 2 - 3
+        
+        # Draw shadow for depth
+        shadow_center = (center[0] + 2, center[1] + 2)
+        pygame.draw.circle(self.screen, (50, 50, 50), shadow_center, radius, 3)
+        
+        # Main food circle with gradient effect
+        pygame.draw.circle(self.screen, color, center, radius)
+        
+        # Darker border for definition
+        border_color = tuple(max(0, c - 50) for c in color)
+        pygame.draw.circle(self.screen, border_color, center, radius, 2)
+        
+        # Bright highlight for 3D effect
+        highlight_pos = (center[0] - radius//3, center[1] - radius//3)
+        highlight_radius = radius // 3
+        pygame.draw.circle(self.screen, WHITE, highlight_pos, highlight_radius)
+        
+        # Small sparkle effect
+        sparkle_pos = (center[0] + radius//4, center[1] - radius//2)
+        pygame.draw.circle(self.screen, WHITE, sparkle_pos, 2)
+    
+    def _draw_multiple_food(self, game_state: Dict[str, Any]) -> None:
+        """Draw all food items on the screen with different colors."""
+        # Check if we have new multiple food system
+        if 'food_items' in game_state and game_state['food_items']:
+            # Draw all food items with their individual colors
+            for food_item in game_state['food_items']:
+                self._draw_food(food_item.position, food_item.color)
+        elif 'food_positions' in game_state and game_state['food_positions']:
+            # Draw multiple positions with default colors
+            colors = [(255, 0, 0), (255, 165, 0), (255, 255, 0)]  # Red, Orange, Yellow
+            for i, position in enumerate(game_state['food_positions']):
+                color = colors[i % len(colors)]
+                self._draw_food(position, color)
+        else:
+            # Fallback to single food
+            self._draw_food(game_state['food_position'])
     
     def _draw_ui(self, game_state: Dict[str, Any]) -> None:
         """Draw user interface elements."""
@@ -110,12 +143,17 @@ class PygameRenderer:
         high_score_text = self.font_small.render(f"High: {score_info['high']}", True, LIGHT_GRAY)
         self.screen.blit(high_score_text, (10, GRID_HEIGHT * CELL_SIZE + 45))
         
-        # Length
+        # Length and food count
         length_text = self.font_small.render(f"Length: {len(game_state['snake_body'])}", True, LIGHT_GRAY)
         self.screen.blit(length_text, (10, GRID_HEIGHT * CELL_SIZE + 70))
         
-        # Controls hint
-        controls_text = self.font_small.render("Controls: WASD | R=Restart | P=Pause | ESC=Quit", True, LIGHT_GRAY)
+        # Food count display
+        food_count = len(game_state.get('food_positions', [game_state.get('food_position', (0,0))]))
+        food_text = self.font_small.render(f"Food: {food_count}", True, LIGHT_GRAY)
+        self.screen.blit(food_text, (150, GRID_HEIGHT * CELL_SIZE + 70))
+        
+        # Controls hint (updated for multiple food)
+        controls_text = self.font_small.render("Multiple Food Mode! WASD=Move | R=Restart | P=Pause | ESC=Quit", True, LIGHT_GRAY)
         controls_rect = controls_text.get_rect()
         controls_rect.right = WINDOW_WIDTH - 10
         controls_rect.y = GRID_HEIGHT * CELL_SIZE + 10

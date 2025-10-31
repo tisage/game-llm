@@ -101,13 +101,24 @@ class GameEngine:
             self.end_game()
             return self._get_update_info(True, False, True)
         
-        # Check food collision
+        # Check food collision with multiple food items
         food_eaten = False
-        if self.collision_detector.check_food_collision(snake_head, self.food.get_position()):
-            self.snake.grow()
-            self.score_manager.add_food_score()
-            self.food.respawn(snake_body)
-            food_eaten = True
+        if hasattr(self.food, 'manager'):
+            # New multiple food system
+            eaten_food = self.food.manager.check_collision(snake_head)
+            if eaten_food:
+                self.snake.grow()
+                self.score_manager.add_food_score()
+                self.food.manager.remove_food(eaten_food)
+                self.food.manager.update(snake_body)  # Spawn new food if needed
+                food_eaten = True
+        else:
+            # Legacy single food system
+            if self.collision_detector.check_food_collision(snake_head, self.food.get_position()):
+                self.snake.grow()
+                self.score_manager.add_food_score()
+                self.food.respawn(snake_body)
+                food_eaten = True
         
         return self._get_update_info(False, food_eaten, False)
     
@@ -134,7 +145,9 @@ class GameEngine:
             'valid': True,
             'snake_body': self.snake.get_body(),
             'snake_direction': self.snake.get_direction(),
-            'food_position': self.food.get_position(),
+            'food_position': self.food.get_position(),  # For compatibility
+            'food_positions': getattr(self.food, 'manager', self.food).get_all_positions() if hasattr(self.food, 'manager') else [self.food.get_position()],
+            'food_items': getattr(self.food, 'manager', self.food).get_all_food_items() if hasattr(self.food, 'manager') else [],
             'score_info': self.score_manager.get_score_info(),
             'game_over': self.game_over,
             'paused': self.paused,
