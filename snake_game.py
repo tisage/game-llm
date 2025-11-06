@@ -6,23 +6,33 @@ import random
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 GRID_SIZE = 20
-GRID_WIDTH = SCREEN_WIDTH // GRID_SIZE
-GRID_HEIGHT = SCREEN_HEIGHT // GRID_SIZE
 
-# Colors
-BLACK = (0, 0, 0)
-GREEN = (0, 255, 0)
-BRIGHT_GREEN = (100, 255, 100)
-RED = (255, 0, 0)
-WHITE = (255, 255, 255)
+# --- Retro UI ---
+STATUS_BAR_HEIGHT = 60
+GRID_WIDTH = SCREEN_WIDTH // GRID_SIZE
+GRID_HEIGHT = (SCREEN_HEIGHT - STATUS_BAR_HEIGHT) // GRID_SIZE
+PLAY_AREA_Y_OFFSET = STATUS_BAR_HEIGHT
+FONT_NAME = 'PressStart2P-Regular.ttf'
+
+# Retro Color Palette (NES-like)
+COLOR_BACKGROUND = (12, 12, 12)
+COLOR_GRID_BG = (20, 20, 20)
+COLOR_SNAKE_HEAD = (118, 204, 9)
+COLOR_SNAKE_BODY = (80, 140, 20)
+COLOR_SNAKE_OUTLINE = (12, 12, 12)
+COLOR_FOOD = (214, 60, 60)
+COLOR_FOOD_OUTLINE = (12, 12, 12)
+COLOR_UI_TEXT = (230, 230, 230)
+COLOR_UI_BORDER = (60, 60, 60)
+COLOR_GAMEOVER = (214, 60, 60)
 
 # Game settings
 SNAKE_INITIAL_LENGTH = 3
-SNAKE_SPEED_FPS = 10 # Frames per second, effectively controls speed
+SNAKE_SPEED_FPS = 10
 
 class SnakeGame:
     """
-    A class to encapsulate the Snake game logic and data.
+    A class to encapsulate the Snake game logic and data with a retro UI style.
     """
     def __init__(self):
         """
@@ -30,9 +40,17 @@ class SnakeGame:
         """
         pygame.init()
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-        pygame.display.set_caption('Snake Game')
+        pygame.display.set_caption('Snake Game - Retro Edition')
         self.clock = pygame.time.Clock()
-        self.font = pygame.font.Font(None, 36)
+        try:
+            self.ui_font = pygame.font.Font(FONT_NAME, 16)
+            self.message_font = pygame.font.Font(FONT_NAME, 40)
+        except FileNotFoundError:
+            print(f"Error: Font file '{FONT_NAME}' not found. Please place it in the root directory.")
+            print("Using default font.")
+            self.ui_font = pygame.font.Font(None, 24)
+            self.message_font = pygame.font.Font(None, 50)
+
         self.game_over = False
         self.paused = False
         self._reset_game_state()
@@ -45,10 +63,12 @@ class SnakeGame:
         self.paused = False
         self.score = 0
         
-        # Initial snake position and direction
-        self.snake = [(GRID_WIDTH // 2, GRID_HEIGHT // 2)]
+        # Center the snake in the new playable area
+        start_x = GRID_WIDTH // 2
+        start_y = GRID_HEIGHT // 2
+        self.snake = [(start_x, start_y)]
         for i in range(1, SNAKE_INITIAL_LENGTH):
-            self.snake.append((GRID_WIDTH // 2 - i, GRID_HEIGHT // 2))
+            self.snake.append((start_x - i, start_y))
         
         self.direction = 'RIGHT'
         self.new_direction = 'RIGHT'
@@ -58,10 +78,11 @@ class SnakeGame:
 
     def _spawn_food(self, count=1):
         """
-        Spawns a specified number of food items at random locations.
+        Spawns food, ensuring it's not in the status bar area or on the snake.
         """
         for _ in range(count):
             while True:
+                # Position is relative to the playable grid
                 position = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
                 if position not in self.snake and position not in self.food:
                     self.food.append(position)
@@ -104,35 +125,29 @@ class SnakeGame:
 
     def _update_game_state(self):
         """
-        Updates the position of the snake, checks for collisions, and handles food consumption.
+        Updates snake position and checks for collisions within the playable area.
         """
         self.direction = self.new_direction
         head_x, head_y = self.snake[0]
 
-        if self.direction == 'UP':
-            head_y -= 1
-        elif self.direction == 'DOWN':
-            head_y += 1
-        elif self.direction == 'LEFT':
-            head_x -= 1
-        elif self.direction == 'RIGHT':
-            head_x += 1
+        if self.direction == 'UP': head_y -= 1
+        elif self.direction == 'DOWN': head_y += 1
+        elif self.direction == 'LEFT': head_x -= 1
+        elif self.direction == 'RIGHT': head_x += 1
 
         new_head = (head_x, head_y)
 
-        # Check for wall collision
+        # Check for wall collision (within the playable grid)
         if not (0 <= head_x < GRID_WIDTH and 0 <= head_y < GRID_HEIGHT):
             self.game_over = True
             return
 
-        # Check for self collision
         if new_head in self.snake:
             self.game_over = True
             return
 
         self.snake.insert(0, new_head)
 
-        # Check for food collision
         if new_head in self.food:
             self.score += 10
             self.food.remove(new_head)
@@ -140,32 +155,46 @@ class SnakeGame:
         else:
             self.snake.pop()
 
+    def _draw_pixel_block(self, grid_pos, color, outline_color):
+        """ Helper to draw a block with an outline in the playable grid. """
+        x = grid_pos[0] * GRID_SIZE
+        y = grid_pos[1] * GRID_SIZE + PLAY_AREA_Y_OFFSET
+        
+        # Draw outline
+        pygame.draw.rect(self.screen, outline_color, (x, y, GRID_SIZE, GRID_SIZE))
+        # Draw inner fill
+        pygame.draw.rect(self.screen, color, (x + 1, y + 1, GRID_SIZE - 2, GRID_SIZE - 2))
+
     def _draw_elements(self):
         """
-        Renders all game elements to the screen.
+        Renders all game elements with a retro style.
         """
-        self.screen.fill(BLACK)
+        self.screen.fill(COLOR_BACKGROUND)
         
+        # --- Draw UI / Status Bar ---
+        pygame.draw.rect(self.screen, COLOR_UI_BORDER, (0, 0, SCREEN_WIDTH, STATUS_BAR_HEIGHT))
+        pygame.draw.rect(self.screen, COLOR_BACKGROUND, (2, 2, SCREEN_WIDTH - 4, STATUS_BAR_HEIGHT - 4))
+        
+        score_text = self.ui_font.render(f"SCORE: {self.score}", True, COLOR_UI_TEXT)
+        self.screen.blit(score_text, (20, 20))
+        
+        food_text = self.ui_font.render(f"FOOD: {len(self.food)}", True, COLOR_UI_TEXT)
+        food_rect = food_text.get_rect(right=SCREEN_WIDTH - 20, top=20)
+        self.screen.blit(food_text, food_rect)
+
+        # --- Draw Play Area ---
+        play_area_rect = (0, PLAY_AREA_Y_OFFSET, SCREEN_WIDTH, SCREEN_HEIGHT - PLAY_AREA_Y_OFFSET)
+        pygame.draw.rect(self.screen, COLOR_GRID_BG, play_area_rect)
+        pygame.draw.rect(self.screen, COLOR_UI_BORDER, play_area_rect, 2)
+
         # Draw snake
         for i, segment in enumerate(self.snake):
-            rect = pygame.Rect(segment[0] * GRID_SIZE, segment[1] * GRID_SIZE, GRID_SIZE, GRID_SIZE)
-            color = BRIGHT_GREEN if i == 0 else GREEN
-            pygame.draw.rect(self.screen, color, rect)
+            color = COLOR_SNAKE_HEAD if i == 0 else COLOR_SNAKE_BODY
+            self._draw_pixel_block(segment, color, COLOR_SNAKE_OUTLINE)
 
         # Draw food
         for item in self.food:
-            rect = pygame.Rect(item[0] * GRID_SIZE, item[1] * GRID_SIZE, GRID_SIZE, GRID_SIZE)
-            # 3D-like effect for food
-            pygame.draw.circle(self.screen, (150, 0, 0), rect.center, GRID_SIZE // 2) # Shadow
-            pygame.draw.circle(self.screen, RED, (rect.centerx - 1, rect.centery - 1), GRID_SIZE // 2) # Main color
-            pygame.draw.circle(self.screen, (255, 150, 150), (rect.centerx - 3, rect.centery - 3), GRID_SIZE // 4) # Highlight
-
-        # Draw UI
-        score_text = self.font.render(f"Score: {self.score}", True, WHITE)
-        self.screen.blit(score_text, (10, 10))
-        
-        food_count_text = self.font.render(f"Food: {len(self.food)}", True, WHITE)
-        self.screen.blit(food_count_text, (10, 40))
+            self._draw_pixel_block(item, COLOR_FOOD, COLOR_FOOD_OUTLINE)
 
         if self.game_over:
             self._draw_game_over()
@@ -174,28 +203,20 @@ class SnakeGame:
 
         pygame.display.flip()
 
+    def _draw_message(self, text, font, color, y_offset=0):
+        """ Helper to draw centered messages. """
+        message_surf = font.render(text, True, color)
+        message_rect = message_surf.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + y_offset))
+        self.screen.blit(message_surf, message_rect)
+
     def _draw_paused_message(self):
-        """
-        Displays the 'PAUSED' message.
-        """
-        paused_font = pygame.font.Font(None, 72)
-        paused_text = paused_font.render("PAUSED", True, WHITE)
-        paused_rect = paused_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
-        self.screen.blit(paused_text, paused_rect)
+        """ Displays the 'PAUSED' message. """
+        self._draw_message("PAUSED", self.message_font, COLOR_UI_TEXT)
 
     def _draw_game_over(self):
-        """
-        Displays the 'GAME OVER' message.
-        """
-        over_font = pygame.font.Font(None, 72)
-        over_text = over_font.render("GAME OVER", True, RED)
-        over_rect = over_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
-        self.screen.blit(over_text, over_rect)
-        
-        restart_font = pygame.font.Font(None, 36)
-        restart_text = restart_font.render("Press 'R' to Restart", True, WHITE)
-        restart_rect = restart_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 50))
-        self.screen.blit(restart_text, restart_rect)
+        """ Displays the 'GAME OVER' message. """
+        self._draw_message("GAME OVER", self.message_font, COLOR_GAMEOVER, y_offset=-30)
+        self._draw_message("Press 'R' to Restart", self.ui_font, COLOR_UI_TEXT, y_offset=30)
 
 
 if __name__ == '__main__':
