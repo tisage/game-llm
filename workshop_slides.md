@@ -150,6 +150,6 @@ Create a complete, single-file Python application for a classic Snake game...
     3.  **Code:** The AI generated the code based on our blueprint.
     4.  **Refine:** We can easily tweak the design and have the AI apply the changes.
 
--   **Your Turn:** Use the `game_design_template.md` to design your own simple game!
+-   **Your Turn:** Use the `/prompts/game_design_prompt_template.md` to design your own simple game!
 
 -   **Q & A**

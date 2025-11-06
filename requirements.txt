@@ -1,5 +1,2 @@
 # Core dependencies for Snake Game
 pygame>=2.5.0
-
-# Development and testing tools
-pytest>=7.0.0
