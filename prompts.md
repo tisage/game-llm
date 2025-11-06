@@ -82,4 +82,7 @@ A single Python file (`snake_game.py`) containing the complete, runnable game.
 
 ---
 
+## Enhancements
 It works like a magic! now I want you to add more support and functionality: how about when user press "P" key, the game will pause and show "PAUSED" message in the center of the screen. Pressing "P" again will resume the game.
+
+Good. now let's improve the GUI, make my game has better UI/UX. like traditionally FC/NES game style. (maybe using Press_Start_2P font and 8-bit style graphics).
