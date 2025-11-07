@@ -136,9 +136,30 @@ Create a complete, single-file Python application for a classic Snake game...
 
 -   **Speaker Script:** "Now, let's see it in action. I'm going to take this prompt and use it with an AI command-line tool to generate our game from scratch."
 
--   **(This is where you would run the prompt through the Gemini CLI or other tool).**
+-   **Available AI CLI Tools:**
+    -   **Claude Code** - Anthropic's official CLI for Claude
+    -   **Gemini CLI** - Google's Gemini command-line tool
+    -   **GitHub Copilot CLI** - GitHub's AI pair programmer
 
--   We'll then iterate on it, maybe adding a new feature like a pause button or a new visual style.
+-   **(This is where you would run the prompt through your chosen AI CLI tool).**
+
+-   We'll then iterate on it, maybe adding a new feature like a pause button or a retro 8-bit visual style.
+
+---
+
+## More Game Examples
+
+-   **Speaker Script:** "We've prepared several game prompts for you to explore. Each one follows the same structured approach."
+
+-   **Available in `/prompts/`:**
+    -   `game_design_prompt_snake.md` - Classic Snake game
+    -   `game_design_prompt_pingpong.md` - Two-player Pong game
+    -   `game_design_prompt_breakout.md` - Brick breaker game
+    -   `game_design_prompt_flappybird.md` - Flappy Bird style game
+    -   `game_design_prompt_spaceshooter.md` - Vertical space shooter
+    -   `game_design_prompt_mazerunner.md` - Maze navigation game
+
+-   **Each prompt includes:** Objective, Gameplay Mechanics, GUI Design, Implementation Plan, and Deliverable
 
 ---
 
@@ -150,6 +171,21 @@ Create a complete, single-file Python application for a classic Snake game...
     3.  **Code:** The AI generated the code based on our blueprint.
     4.  **Refine:** We can easily tweak the design and have the AI apply the changes.
 
--   **Your Turn:** Use the `/prompts/game_design_prompt_template.md` to design your own simple game!
+-   **Your Turn:**
+    -   Try one of the existing prompts in `/prompts/` with your AI CLI tool
+    -   Use `/prompts/game_design_prompt_template.md` to design your own game!
+    -   Experiment with enhancements: add pause functionality, improve graphics, change difficulty
 
--   **Q & A**
+-   **Resources:**
+    -   GitHub Repository: Share this repo link with students
+    -   Installation Guide: `docs/AI CLI Tools Installation.md`
+
+---
+
+## Q & A
+
+-   **Common Questions:**
+    -   Which AI CLI tool is recommended for vibe coding?
+    -   What IDE works best for this workflow?
+    -   Any tips for writing better prompts?
+    -   How do I handle errors or bugs in generated code?

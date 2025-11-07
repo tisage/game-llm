@@ -90,10 +90,10 @@ Good. now let's improve the GUI, make my game has better UI/UX. like traditional
 ---
 
 ## NEXT STEPS
-
 Try snake game prompt using Claude Code.
 
-add more game prompts at `./prompts/` folder.
+read my code and doc. can you follow the prompt template and
+add more game prompts at `./prompts/` folder. make the game simple and easy
 
 polish `workshop_slides.md` if necessary.
 polish `./docs/AI CLI Tools Installation.md` if necessary.
