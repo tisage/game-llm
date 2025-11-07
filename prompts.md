@@ -98,9 +98,9 @@ add more game prompts at `./prompts/` folder. make the game simple and easy
 polish `workshop_slides.md` if necessary.
 polish `./docs/AI CLI Tools Installation.md` if necessary.
 
-Add flowchart (mermaid diagram) for slides.
+Add some flowchart (mermaid diagram) for all my workshop slides. I can render it and create a `pic/` folder with the pictures. you need to cite those pictures (can be a placeholder pic names) in my workshop_slides.md
 
-market my new courses in the Spring 2026 that teaches how to write promtps, use more generative AI tools, and vibe coding.
+add a simple slide that market my new courses (CISC395 Special Topic) in the Spring 2026 that teaches how to write promtps, use more generative AI tools, and vibe coding.
 
 Prepare Q&A session:
 - Share the url of this GitHub repo link.

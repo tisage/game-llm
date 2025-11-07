@@ -16,6 +16,8 @@
 
 -   It's about capturing the "vibe" of your idea in code.
 
+![Vibe Coding Workflow](./pic/vibe-coding-workflow.png)
+
 ---
 
 ## The Art of the Prompt
@@ -40,6 +42,8 @@
 -   We will break down our game design into five clear sections, just like a real design document.
 
 -   This process will become the blueprint for our AI to follow.
+
+![Prompt Structure - 5 Sections](./pic/prompt-structure.png)
 
 ---
 
@@ -141,9 +145,13 @@ Create a complete, single-file Python application for a classic Snake game...
     -   **Gemini CLI** - Google's Gemini command-line tool
     -   **GitHub Copilot CLI** - GitHub's AI pair programmer
 
+![AI Tool Selection Guide](./pic/ai-tool-selection.png)
+
 -   **(This is where you would run the prompt through your chosen AI CLI tool).**
 
 -   We'll then iterate on it, maybe adding a new feature like a pause button or a retro 8-bit visual style.
+
+![Development Iteration Cycle](./pic/development-iteration-cycle.png)
 
 ---
 
@@ -170,6 +178,8 @@ Create a complete, single-file Python application for a classic Snake game...
     2.  **Prompt:** We translated that idea into a detailed, structured design document.
     3.  **Code:** The AI generated the code based on our blueprint.
     4.  **Refine:** We can easily tweak the design and have the AI apply the changes.
+
+![Game Development Process](./pic/game-development-process.png)
 
 -   **Your Turn:**
     -   Try one of the existing prompts in `/prompts/` with your AI CLI tool
