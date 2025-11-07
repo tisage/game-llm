@@ -86,3 +86,25 @@ A single Python file (`snake_game.py`) containing the complete, runnable game.
 It works like a magic! now I want you to add more support and functionality: how about when user press "P" key, the game will pause and show "PAUSED" message in the center of the screen. Pressing "P" again will resume the game.
 
 Good. now let's improve the GUI, make my game has better UI/UX. like traditionally FC/NES game style. (maybe using Press_Start_2P font and 8-bit style graphics).
+
+---
+
+## NEXT STEPS
+
+Try snake game prompt using Claude Code.
+
+add more game prompts at `./prompts/` folder.
+
+polish `workshop_slides.md` if necessary.
+polish `./docs/AI CLI Tools Installation.md` if necessary.
+
+Add flowchart (mermaid diagram) for slides.
+
+market my new courses in the Spring 2026 that teaches how to write promtps, use more generative AI tools, and vibe coding.
+
+Prepare Q&A session:
+- Share the url of this GitHub repo link.
+- Which IDE/LLM model is recommended for vibe coding?
+- Any tips vibe coding?
+
+Prepare slides deck for this workshop (PPT)
