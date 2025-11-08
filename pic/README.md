@@ -37,11 +37,10 @@ Hierarchical breakdown of the 5 sections:
 - Implementation Plan
 - Deliverable
 
-### 3. AI Tool Selection (84 KB)
-Decision flowchart helping students choose between:
-- Claude Code ($20/month)
-- Gemini CLI (Free tier)
-- GitHub Copilot CLI (Free for students, $10/month otherwise)
+### 3. AI Tool Selection
+Shows the two recommended AI CLI tools for this workshop:
+- GitHub Copilot CLI (FREE for students with GitHub Education)
+- Gemini CLI (FREE tier for everyone)
 
 ### 4. Development Iteration Cycle (58 KB)
 Shows the feedback loop for improving generated games:

@@ -10,7 +10,7 @@
 
 -   It's a development style focused on **rapid iteration** and getting a feel for the end product as quickly as possible.
 
--   You act as the **creative director**, guiding an AI assistant (like Gemini) to do the heavy lifting.
+-   You act as the **creative director**, guiding an AI assistant (like Gemini or Copilot) to do the heavy lifting.
 
 -   The goal isn't perfect code on the first try. It's about getting a **functional prototype** up and running, then refining it.
 
@@ -140,12 +140,11 @@ Create a complete, single-file Python application for a classic Snake game...
 
 -   **Speaker Script:** "Now, let's see it in action. I'm going to take this prompt and use it with an AI command-line tool to generate our game from scratch."
 
--   **Available AI CLI Tools:**
-    -   **Claude Code** - Anthropic's official CLI for Claude
-    -   **Gemini CLI** - Google's Gemini command-line tool
-    -   **GitHub Copilot CLI** - GitHub's AI pair programmer
+-   **Recommended AI CLI Tools for This Workshop:**
+    -   **GitHub Copilot CLI** - Free for students with GitHub Education
+    -   **Gemini CLI** - Free tier available (60 req/min, 1,000 req/day)
 
-![AI Tool Selection Guide](./pic/ai-tool-selection.png)
+-   Both tools work great for game prototyping. Choose whichever you prefer!
 
 -   **(This is where you would run the prompt through your chosen AI CLI tool).**
 
@@ -195,7 +194,8 @@ Create a complete, single-file Python application for a classic Snake game...
 ## Q & A
 
 -   **Common Questions:**
-    -   Which AI CLI tool is recommended for vibe coding?
     -   What IDE works best for this workflow?
     -   Any tips for writing better prompts?
     -   How do I handle errors or bugs in generated code?
+    -   Can I use these prompts with other AI tools?
+    -   How do I get GitHub Education benefits for free Copilot?

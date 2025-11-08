@@ -1,32 +1,25 @@
-# AI CLI Tool Selection Guide
+# AI CLI Tools for This Workshop
 
 ```mermaid
-flowchart TD
-    Start{Choose Your<br/>AI CLI Tool} --> Student{Are you a<br/>student?}
+flowchart TB
+    Start([Workshop Start]) --> Tools{Pick Your Tool}
 
-    Student -->|Yes| Free{Want completely<br/>free option?}
-    Student -->|No| Budget{What's your<br/>budget?}
+    Tools --> Copilot[🔷 GitHub Copilot CLI<br/><br/>✅ FREE for students<br/>with GitHub Education<br/><br/>Full features<br/>No limits]
+    Tools --> Gemini[🔷 Gemini CLI<br/><br/>✅ FREE tier<br/>for everyone<br/><br/>60 req/min<br/>1,000 req/day]
 
-    Free -->|Yes| Gemini[🔷 Gemini CLI<br/>✅ Free tier<br/>60 req/min<br/>1000 req/day]
-    Free -->|No| GHStudent[🔷 GitHub Copilot CLI<br/>✅ Free for students<br/>Full features]
+    Copilot --> CopilotSteps[1. Get GitHub Education<br/>2. Install Copilot CLI<br/>3. Authenticate]
+    Gemini --> GeminiSteps[1. Use Google account<br/>2. Install Gemini CLI<br/>3. Authenticate]
 
-    Budget -->|$10/month| GH[🔷 GitHub Copilot CLI<br/>💰 $10/month<br/>GitHub integration]
-    Budget -->|$20/month| Claude[🔷 Claude Code<br/>💰 $20/month<br/>Advanced features<br/>Multi-file editing]
-    Budget -->|Free only| Gemini
+    CopilotSteps --> Ready([✅ Ready to Build Games!])
+    GeminiSteps --> Ready
 
-    Gemini --> Setup[📥 Install & Setup]
-    GHStudent --> Setup
-    GH --> Setup
-    Claude --> Setup
-
-    Setup --> Auth[🔐 Authenticate]
-    Auth --> Test[✅ Test with<br/>simple prompt]
-    Test --> Ready([Ready to Code!])
+    Ready --> Code[🎮 Start Coding<br/>with Game Prompts]
 
     style Start fill:#e1f5ff
     style Ready fill:#c8e6c9
+    style Code fill:#f8bbd0
+    style Copilot fill:#b2dfdb
     style Gemini fill:#fff9c4
-    style GHStudent fill:#b2dfdb
-    style GH fill:#b2dfdb
-    style Claude fill:#d1c4e9
+    style CopilotSteps fill:#e8f5e9
+    style GeminiSteps fill:#fff3e0
 ```

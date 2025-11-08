@@ -8,7 +8,7 @@ This folder contains mermaid diagram source files that are referenced in the wor
 2. **prompt-structure.md** - Breaks down the 5-section prompt framework
 3. **development-iteration-cycle.md** - Illustrates the iterative improvement process
 4. **game-development-process.md** - Complete flowchart for workshop participants
-5. **ai-tool-selection.md** - Decision tree for choosing the right AI CLI tool
+5. **ai-tool-selection.md** - Shows the two recommended AI CLI tools for students (GitHub Copilot CLI and Gemini CLI)
 
 ## How to Render
 
