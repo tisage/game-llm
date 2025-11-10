@@ -1,35 +1,43 @@
 # Prompt Structure - 5 Section Framework
 
 ```mermaid
-flowchart TD
-    A[📋 Complete Game Prompt] --> B[1️⃣ Objective]
-    A --> C[2️⃣ Core Gameplay Mechanics]
-    A --> D[3️⃣ GUI Design]
-    A --> E[4️⃣ Implementation Plan]
-    A --> F[5️⃣ Deliverable]
+graph TB
+    subgraph Main["📋 Game Design Prompt"]
+        direction TB
 
-    B --> B1[High-level goal<br/>One sentence summary]
+        subgraph Section1["1️⃣ OBJECTIVE"]
+            Obj[What game to build?<br/>One sentence goal]
+        end
 
-    C --> C1[Game World]
-    C --> C2[Player Character]
-    C --> C3[Items/Enemies]
-    C --> C4[Scoring System]
-    C --> C5[Win/Loss Conditions]
+        subgraph Section2["2️⃣ CORE GAMEPLAY"]
+            GP1[Game World]
+            GP2[Player Character]
+            GP3[Items/Enemies]
+            GP4[Scoring]
+            GP5[Win/Loss Rules]
+        end
 
-    D --> D1[Art Style]
-    D --> D2[UI Elements]
-    D --> D3[Sound/Music]
+        subgraph Section3["3️⃣ GUI DESIGN"]
+            UI1[Art Style]
+            UI2[UI Elements]
+            UI3[Sound/Music]
+        end
 
-    E --> E1[Language & Library]
-    E --> E2[Code Structure]
-    E --> E3[Best Practices]
+        subgraph Section4["4️⃣ IMPLEMENTATION"]
+            Impl1[Language & Library]
+            Impl2[Code Structure]
+            Impl3[Best Practices]
+        end
 
-    F --> F1[Final Output<br/>Single Python file]
+        subgraph Section5["5️⃣ DELIVERABLE"]
+            Del[Single Python file]
+        end
+    end
 
-    style A fill:#e3f2fd
-    style B fill:#fff3e0
-    style C fill:#f3e5f5
-    style D fill:#e8f5e9
-    style E fill:#fce4ec
-    style F fill:#fff9c4
+    style Section1 fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    style Section2 fill:#f3e5f5,stroke:#8e24aa,stroke-width:2px
+    style Section3 fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style Section4 fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    style Section5 fill:#fff9c4,stroke:#f9a825,stroke-width:2px
+    style Main fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
 ```
