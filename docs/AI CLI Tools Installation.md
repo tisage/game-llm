@@ -13,7 +13,6 @@ GitHub Copilot CLI brings the power of Copilot to your terminal. **Free for veri
 - **Requirements:** GitHub account with Copilot subscription
 - **Pricing:**
   - **FREE for verified students!** See [how to get free access](https://docs.github.com/en/copilot/how-tos/manage-your-account/get-free-access-to-copilot-pro)
-  - $10/month for GitHub Copilot Pro (non-students)
 
 ### How to Get Free GitHub Copilot as a Student
 
@@ -65,7 +64,7 @@ Claude Code is Anthropic's official CLI for Claude, providing a powerful command
 
 - **Primary Tool:** GitHub Copilot CLI (free for students) or Gemini CLI (free tier)
 - **IDE:** Visual Studio Code with the corresponding extension
-- **Terminal:** Any modern terminal (Terminal on Mac, PowerShell/WSL on Windows)
+- **Terminal:** Any modern terminal (Terminal on Mac/Linux, PowerShell/WSL on Windows)
 - **Python Environment:** Python 3.8+ with pip installed
 
 ---
@@ -74,9 +73,9 @@ Claude Code is Anthropic's official CLI for Claude, providing a powerful command
 
 | Feature | GitHub Copilot CLI | Gemini CLI |
 |---------|-------------------|------------|
-| **Cost for Students** | FREE | FREE (with limits) |
+| **Cost for Students** | FREE | FREE |
 | **Setup Difficulty** | Easy | Easy |
-| **Free Tier Limits** | No limits with Pro | 60 req/min, 1,000/day |
+| **Request Limits** | 300 premium requests/month with Pro | 60 req/min, 1,000/day |
 | **Best For** | Students with GitHub Education | Everyone, quick start |
 
 Both tools are excellent for this workshop. Choose based on your preference!
