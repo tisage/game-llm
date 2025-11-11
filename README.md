@@ -7,7 +7,7 @@ Welcome to the AI Game Generation Workshop! This repository is designed to demon
 The goal of this workshop is to show you how to go from a detailed game design document to a fully playable game using an AI-powered CLI tool. We will use AI to generate Python code for classic games like Snake and Pong. This approach helps in rapid prototyping and understanding the structure of a game.
 
 <p align="center">
-<img src="./pic/game_example.png" alt="AI Agent" width="400"/>
+<img src="./pic/game_example.png" alt="Game Example" width="400"/>
 <img src="./pic/vibe-coding-workflow.png" alt="Vibe Coding Workflow" width="150"/>
 </p>
 

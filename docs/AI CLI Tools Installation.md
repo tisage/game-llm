@@ -2,6 +2,11 @@
 
 This workshop uses AI-powered command-line interface (CLI) tools to assist in code generation and editing. We recommend using **GitHub Copilot CLI** (free for students) or **Gemini CLI** (free tier available).
 
+<p align="center">
+<img src="../pic/ai_agent.png" alt="AI Agent" width="400"/>
+<img src="../pic/vibe-coding-workflow.png" alt="Vibe Coding Workflow" width="150"/>
+</p>
+
 ---
 
 ## GitHub Copilot CLI (Recommended for Students)
@@ -77,5 +82,3 @@ Claude Code is Anthropic's official CLI for Claude, providing a powerful command
 | **Setup Difficulty** | Easy | Easy |
 | **Request Limits** | 300 premium requests/month with Pro | 60 req/min, 1,000/day |
 | **Best For** | Students with GitHub Education | Everyone, quick start |
-
-Both tools are excellent for this workshop. Choose based on your preference!
