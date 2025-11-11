@@ -74,3 +74,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Designed by T. Wang
 
 Since 10/2025
+
+version 1.0.0
