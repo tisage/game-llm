@@ -62,6 +62,7 @@ Create a complete, single-file Python application for a classic Snake game using
     *   Use constants for key game parameters like window dimensions, grid size, colors, etc.
     *   Create separate methods for handling user input, updating the game state, and rendering the game.
     *   Include a main game loop that controls the flow of the game.
+    *   Ensure keyboard input is properly captured and processed in every frame so WASD controls are responsive.
     *   The code should be well-commented to explain the logic.
 
 ## 5. Deliverable

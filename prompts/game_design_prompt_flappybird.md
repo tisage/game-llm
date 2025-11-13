@@ -67,6 +67,7 @@ Create a complete, single-file Python application for a **Flappy Bird** style ga
     *   Use constants for key game parameters (window dimensions, colors, gravity, flap strength, pipe speed, etc.).
     *   Create separate methods for handling user input, updating the game state (bird physics, pipe scrolling, collision detection), and rendering.
     *   Include a main game loop that controls the flow of the game.
+    *   Ensure keyboard input is properly captured and processed in every frame so controls are responsive.
     *   The code should be well-commented to explain the logic.
 
 ## 5. Deliverable

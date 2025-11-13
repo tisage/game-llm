@@ -77,6 +77,7 @@ Create a complete, single-file Python application for a classic **Breakout** (Br
     *   Use constants for key game parameters (window dimensions, colors, paddle size, ball speed, brick layout, etc.).
     *   Create separate methods for handling user input, updating the game state, and rendering.
     *   Include a main game loop that controls the flow of the game.
+    *   Ensure keyboard input is properly captured and processed in every frame so controls are responsive.
     *   The code should be well-commented to explain the logic.
 
 ## 5. Deliverable
