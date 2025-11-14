@@ -32,7 +32,7 @@ pip install -r requirements.txt
 
 To fully participate in the interactive part of the workshop, you should install an AI-powered CLI tool. Instructions for installing Gemini CLI and GitHub Copilot CLI can be found in the `docs` folder.
 
-- **[CLI Tool Installation Guide](./docs/installation.md)**
+- **[CLI Tool Installation Guide](./docs/AI CLI Tools Installation.pdf)**
 
 ## 📂 Key Files Explained
 
